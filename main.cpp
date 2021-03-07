@@ -23,7 +23,30 @@ void board_out (){    //output of the board (note: try it out to see how it look
         cout << " |" << endl;
     }
 }
-int main(){ //main function should only contain the main loop (for turns) 
+
+void input(){ // just sample code
+    char answer;
+    cout << "Enter your guess: " << endl;
+    cin >> answer;
+    cout << answer << endl;
+}
+/*
+for input function, you must take in three chars and ilagay nyo sya dun sa array if turn 1
+for ex: 
+input:
+    R Y C => {'1', 'R', 'Y', 'C', '0','0','0'} (see char board)
+*/
+
+
+
+//for main function do not put anything other than the main intro and the mainloop
+//keep most of the logic in functions!!!
+int main(){ 
     cout << "Mastermind Game!" << endl;
-    board_out();
+    for(int i = 0; i < 7; i++){
+        board_out();
+        //input();
+    }
+    
+    //add logic to end program if not won
 }
