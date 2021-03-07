@@ -45,7 +45,7 @@ int main(){
     cout << "Mastermind Game!" << endl;
     for(int i = 0; i < 7; i++){
         board_out();
-        //input();
+        input();
     }
     
     //add logic to end program if not won
