@@ -27,7 +27,7 @@ void board_out (){
     }
 }
 
-void input(){ 
+string input(){ 
     string input;
     //this input is very important for the logic part of the code
 
@@ -37,21 +37,82 @@ void input(){
     for(int i = 1 ; i <= 3; i++){
         board[mainloop][i] = input[i-1];
     }
+	return input;
 
 }
 
+void bubble(int arr[]){
+    int size = 3; 
+    bool notSorted = true;
+    while(notSorted){
 
+        for(int i = 0 ; i < size-1; i++ ){
+            if(arr[i+1] > arr[i]){
+                int temp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+            }
+    }
+
+    //loop for checking if sorted
+        for(int i = 0 ; i < size-1; i++){
+            if(arr[i] < arr[i+1]){
+                notSorted = true;
+                break;
+            }
+            else{
+                notSorted = false;
+            }
+        }
+    }
+
+	
+}
+
+// tings wid da inputs
+void logic(string input){
+	//write code that will give the corresponding number code and change it within the 2d array
+	int point[3] = {0,0,0};
+	for(int i=0; i < 3; i++){
+		
+		//if-present loop (wampoint)
+        for(int j = 0 ; j < 3 ; j++){
+			if(input[i] == secret[j]){
+				point[i] += 1;
+				break;
+			}
+		}
+    }
+    //cancer loop
+	for(int i = 0 ; i < 3 ;i++){
+		if(input[i] == secret[i]){
+			point[i] += 1;
+		}
+	}
+
+	//sorting algorithm
+	bubble(&point[0]);
+	cout << "DEBUGGING" << endl;
+	for(int i = 0 ; i < 3; i++){
+		cout << point[i] << ' ';
+	}
+	cout << "END OF DEBUGGING" << endl;
+
+  
+    
+}
 
 
 //for main function do not put anything other than the main intro and the mainloop
 //keep most of the logic in functions!!
 int main(){ 
     cout << "Mastermind Game!" << endl;
+	string uinput; 
     for(int i = 0; i < 7; i++){
         board_out();
-        input();
+        uinput = input();
+		logic(uinput);
         mainloop++;
-        system("cls||clear");
     }
     board_out();
     //add logic to end program if not won
