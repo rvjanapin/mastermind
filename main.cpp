@@ -5,6 +5,33 @@ using namespace std;
 const char secret[3] = {'R', 'G', 'B'}; //the set of colors to guess
 short int mainloop = 0; //important LCV!!
 
+//bubble sort algorithm
+void bubble(int arr[]){
+    const int size = 3; 
+    bool notSorted = true;
+    while(notSorted){
+
+        for(int i = 0 ; i < size-1; i++ ){
+            if(arr[i+1] > arr[i]){
+                int temp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+            }
+        }
+
+        //loop for checking if sorted
+        for(int i = 0 ; i < size-1; i++){
+            if(arr[i] < arr[i+1]){
+                notSorted = true;
+                break;
+            }
+            else{
+                notSorted = false;
+            }
+        }
+    }
+}
+
 char board[7][7] = {
     {'1' , '_', '_', '_', '0', '0', '0' } ,
     {'2' , '_', '_', '_', '0', '0', '0' } ,
@@ -38,44 +65,13 @@ string input(){
         board[mainloop][i] = input[i-1];
     }
 	return input;
-
 }
 
-void bubble(int arr[]){
-    int size = 3; 
-    bool notSorted = true;
-    while(notSorted){
-
-        for(int i = 0 ; i < size-1; i++ ){
-            if(arr[i+1] > arr[i]){
-                int temp = arr[i];
-                arr[i] = arr[i+1];
-                arr[i+1] = temp;
-            }
-    }
-
-    //loop for checking if sorted
-        for(int i = 0 ; i < size-1; i++){
-            if(arr[i] < arr[i+1]){
-                notSorted = true;
-                break;
-            }
-            else{
-                notSorted = false;
-            }
-        }
-    }
-
-	
-}
-
-// tings wid da inputs
 void logic(string input){
-	//write code that will give the corresponding number code and change it within the 2d array
 	int point[3] = {0,0,0};
 	for(int i=0; i < 3; i++){
 		
-		//if-present loop (wampoint)
+		//if-present loop 
         for(int j = 0 ; j < 3 ; j++){
 			if(input[i] == secret[j]){
 				point[i] += 1;
@@ -83,23 +79,14 @@ void logic(string input){
 			}
 		}
     }
-    //cancer loop
+    //if-same-place loop
 	for(int i = 0 ; i < 3 ;i++){
 		if(input[i] == secret[i]){
 			point[i] += 1;
 		}
 	}
-
 	//sorting algorithm
 	bubble(&point[0]);
-	cout << "DEBUGGING" << endl;
-	for(int i = 0 ; i < 3; i++){
-		cout << point[i] << ' ';
-	}
-	cout << "END OF DEBUGGING" << endl;
-
-  
-    
 }
 
 
