@@ -5,28 +5,15 @@ using namespace std;
 const char secret[3] = {'R', 'G', 'B'}; //the set of colors to guess
 short int mainloop = 0; //important LCV!!
 
-//bubble sort algorithm
-void bubble(int arr[]){
-    const int size = 3; 
-    bool notSorted = true;
-    while(notSorted){
-
-        for(int i = 0 ; i < size-1; i++ ){
-            if(arr[i+1] > arr[i]){
+//insertion sort
+void insertion_sort(int arr[]){
+    int size = 3;
+    for(int r = 0 ; r < size; r++){ //entire loop
+        for(int i = 0; i <= r; i++){ //"sorted loop"
+            if(arr[r] > arr[i]){
                 int temp = arr[i];
-                arr[i] = arr[i+1];
-                arr[i+1] = temp;
-            }
-        }
-
-        //loop for checking if sorted
-        for(int i = 0 ; i < size-1; i++){
-            if(arr[i] < arr[i+1]){
-                notSorted = true;
-                break;
-            }
-            else{
-                notSorted = false;
+                arr[i] = arr[r];
+                arr[r] = temp;
             }
         }
     }
@@ -87,7 +74,7 @@ void logic(string input){
 		}
 	}
 	//sorting algorithm
-	bubble(&point[0]);
+	insertion_sort(&point[0]);
 
   	for (int i = 0; i < 3; i++) {
     	point_char[i] = point[i] + '0';
