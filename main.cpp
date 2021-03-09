@@ -5,7 +5,7 @@ using namespace std;
 const char secret[3] = {'R', 'G', 'B'}; //the set of colors to guess
 short int mainloop = 0; //important LCV!!
 
-//bubble sort algorithm
+//insertion sort
 void insertion_sort(int arr[]){
     int size = 3;
     for(int r = 0 ; r < size; r++){ //entire loop
@@ -18,6 +18,7 @@ void insertion_sort(int arr[]){
         }
     }
 }
+
 char board[7][7] = {
     {'1' , '_', '_', '_', '0', '0', '0' } ,
     {'2' , '_', '_', '_', '0', '0', '0' } ,
@@ -55,6 +56,7 @@ string input(){
 
 void logic(string input){
 	int point[3] = {0,0,0};
+  	char point_char[3];
 	for(int i=0; i < 3; i++){
 		
 		//if-present loop 
@@ -73,9 +75,14 @@ void logic(string input){
 	}
 	//sorting algorithm
 	insertion_sort(&point[0]);
-    for(int num: point){
-        cout << num << '-';
-    }
+
+  	for (int i = 0; i < 3; i++) {
+    	point_char[i] = point[i] + '0';
+  	}
+
+  	for (int i = 0; i < 3; i++){
+    	board[mainloop][i+4] = point_char[i];
+  	}
 }
 
 
