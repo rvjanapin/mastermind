@@ -1,7 +1,7 @@
 KARL: 
     * Read the logic function 
     * Given the sorted point array -> Change them on the 2d array board
-    * IMPORTANT VARIABLES::
+    * IMPORTANT VARIABLES:
         1. int mainloop
             - what turn it is 
             - what row in the 2d array

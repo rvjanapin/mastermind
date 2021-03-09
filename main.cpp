@@ -90,13 +90,12 @@ void logic(string input){
 	bubble(&point[0]);
 
   	for (int i = 0; i < 3; i++) {
-    point_char[i] = point[i] + '0';
-  }
+    	point_char[i] = point[i] + '0';
+  	}
 
-  for (int i = 0; i < 3; i++){
-    board[mainloop][i+4] = point_char[i];
-  }
-
+  	for (int i = 0; i < 3; i++){
+    	board[mainloop][i+4] = point_char[i];
+  	}
 }
 
 
