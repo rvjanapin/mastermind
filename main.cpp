@@ -69,6 +69,7 @@ string input(){
 
 void logic(string input){
 	int point[3] = {0,0,0};
+  	char point_char[3];
 	for(int i=0; i < 3; i++){
 		
 		//if-present loop 
@@ -87,6 +88,15 @@ void logic(string input){
 	}
 	//sorting algorithm
 	bubble(&point[0]);
+
+  	for (int i = 0; i < 3; i++) {
+    point_char[i] = point[i] + '0';
+  }
+
+  for (int i = 0; i < 3; i++){
+    board[mainloop][i+4] = point_char[i];
+  }
+
 }
 
 
