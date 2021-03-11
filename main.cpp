@@ -30,7 +30,6 @@ char board[7][7] = {
     {'7' , '_', '_', '_', '0', '0', '0' } ,
 }; //array containing of the given characters (this is what we will alter)
 
-//printing the board
 void board_out (){    
     for(int i = 0 ; i < 7; i++){
         cout << "\t -------------------"  << endl; 
@@ -44,7 +43,6 @@ void board_out (){
 
 string input(){ 
     string input;
-    //this input is very important for the logic part of the code
 
     cout << "Which colors should you guess? (R, O, Y, G, B, V): ";
     cin >> input;
@@ -68,6 +66,7 @@ void logic(string input){
 			}
 		}
     }
+    
     //if-same-place loop
 	for(int i = 0 ; i < 3 ;i++){
 		if(input[i] == secret[i]){
@@ -77,6 +76,7 @@ void logic(string input){
 	//sorting algorithm
 	insertion_sort(&point[0]);
 
+    //conversion from int to char for board
   	for (int i = 0; i < 3; i++) {
     	point_char[i] = point[i] + '0';
   	}
@@ -85,36 +85,36 @@ void logic(string input){
     	board[mainloop][i+4] = point_char[i];
   	}
   
-	//if all elements are2 = bool win = true;
+	//checking if win
 	for (int i = 0; i < 3; i++) {
 		if (point[i] == 2){
     		win = true;
 		}
-    else {
-      win = false;
-	  break;
-    }
+        else {
+            win = false;
+	        break;
+        }
    	}	
 }
 
-
-//for main function do not put anything other than the main intro and the mainloop
-//keep most of the logic in functions!!
 int main(){ 
-    cout << "Mastermind Game!" << endl;
+    cout << "\tMastermind Game!" << endl;
 	string uinput; 
     for(int i = 0; i < 7; i++){
         board_out();
         uinput = input();
 		logic(uinput);
+        
 		if(win){
+            system("clear");
 			board_out();
-      		cout << "You Win!" << endl;
-      		return 0;
-		}
+      		cout << "You Win! Thanks for playing" << endl;
+      		return 0;   
+		}                                                                           
+
         mainloop++;
+        system("clear");
     }
     board_out();
-	cout << "You lose!" << endl;
-    //add logic to end program if not won
+	cout << "You lose! Thanks for playing!" << endl;    
 }
