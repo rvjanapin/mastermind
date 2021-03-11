@@ -2,8 +2,9 @@
 #include <stdlib.h>
 using namespace std;
 
-const char secret[3] = {'R', 'G', 'B'}; //the set of colors to guess
+const char secret[3] = {'Y', 'O', 'V'}; //the set of colors to guess
 short int mainloop = 0; //important LCV!!
+bool win = false;
 
 //insertion sort
 void insertion_sort(int arr[]){
@@ -83,6 +84,17 @@ void logic(string input){
   	for (int i = 0; i < 3; i++){
     	board[mainloop][i+4] = point_char[i];
   	}
+  
+	//if all elements are2 = bool win = true;
+	for (int i = 0; i < 3; i++) {
+		if (point[i] == 2){
+    		win = true;
+		}
+    else {
+      win = false;
+	  break;
+    }
+   	}	
 }
 
 
@@ -95,8 +107,14 @@ int main(){
         board_out();
         uinput = input();
 		logic(uinput);
+		if(win){
+			board_out();
+      		cout << "You Win!" << endl;
+      		return 0;
+		}
         mainloop++;
     }
     board_out();
+	cout << "You lose!" << endl;
     //add logic to end program if not won
 }
